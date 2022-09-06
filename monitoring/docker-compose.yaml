@@ -29,7 +29,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - grafana_data:/var/lib/grafana
+      - monitoring_dashboard:/var/lib/grafana
     depends_on:
       - database
 

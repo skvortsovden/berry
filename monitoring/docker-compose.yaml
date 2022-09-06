@@ -1,0 +1,27 @@
+version: '3.3'
+services:
+
+  database:
+    image: influxdb:1.8
+    container_name: monitoring_db
+    ports:
+      - 8086:8086
+    environment:
+      - INFLUXDB_DB=influx
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=admin
+    volumes:
+      - monitoring_db:/var/lib/influxdb
+
+  collector:
+    image: telegraf:1.23
+    container_name: monitoring_collector
+    ports:
+      - 8125:8125
+    volumes:
+      - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    depends_on:
+      - database
+      
+volumes:
+ monitoring_db: {}

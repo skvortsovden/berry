@@ -22,6 +22,17 @@ services:
       - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
     depends_on:
       - database
-      
+
+  dashboard:
+    image: grafana/grafana:latest
+    container_name: monitoring_dashboard
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - database
+
 volumes:
  monitoring_db: {}
+ monitoring_dashboard: {}

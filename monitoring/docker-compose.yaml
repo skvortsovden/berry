@@ -12,6 +12,7 @@ services:
       - INFLUXDB_ADMIN_PASSWORD=admin
     volumes:
       - monitoring_db:/var/lib/influxdb
+    restart: always
 
   collector:
     image: telegraf:1.23
@@ -22,6 +23,7 @@ services:
       - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
     depends_on:
       - database
+    restart: always
 
   dashboard:
     image: grafana/grafana:latest
@@ -32,6 +34,7 @@ services:
       - monitoring_dashboard:/var/lib/grafana
     depends_on:
       - database
+    restart: always
 
 volumes:
  monitoring_db: {}

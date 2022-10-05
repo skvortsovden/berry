@@ -17,6 +17,7 @@ services:
   collector:
     image: telegraf:1.23
     container_name: monitoring_collector
+    hostname: "${HOSTNAME}"
     ports:
       - 8125:8125
     volumes:

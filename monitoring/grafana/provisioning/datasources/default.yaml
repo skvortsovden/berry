@@ -1,0 +1,13 @@
+apiVersion: 1
+
+datasources:
+  - name: monitoring_db
+    type: influxdb
+    access: proxy
+    database: influx
+    user: admin
+    url: http://monitoring_db:8086
+    jsonData:
+      httpMode: GET
+    secureJsonData:
+      password: admin
